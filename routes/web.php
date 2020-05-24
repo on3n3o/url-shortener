@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'WelcomeController@index');
 
+Route::get('/features', 'WelcomeController@features')->name('features');
+
+Route::post('/shorten', 'ShortenController@store')->name('shorten');
+
+Route::get('/shorten', 'ShortenController@redirect')->name('shorten.redirect');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
