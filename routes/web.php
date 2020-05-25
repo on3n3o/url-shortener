@@ -27,4 +27,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/link', 'LinkController');
 
+Route::get('/stats/{uuid}', 'StatsController')->name('stats');
+
 Route::get('/{short}', 'RedirectController@redirect');

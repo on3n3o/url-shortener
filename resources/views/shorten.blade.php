@@ -17,6 +17,7 @@
             </h2>
             <br>
             <p>{{ config('app.url') }}/{{ $shortLink->short }}</p>
+            <button class="button is-light is-success save-to-clipboard" data-url="{{ config('app.url') }}/{{ $shortLink->short }}">Save to clipboard&nbsp;&nbsp;&nbsp;<i class="fa fa-clipboard"></i></button>
             <br>
             <p>Do you want to make another one?</p><a class="button is-link" href="/">YES!</a>
         </div>

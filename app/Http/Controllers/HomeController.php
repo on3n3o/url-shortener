@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ShortLink;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $shortLinks = \Auth::user()->links()->paginate();
+        return view('home', compact('shortLinks'));
     }
 
 }
