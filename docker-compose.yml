@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  redis_url_shortener:
+    image: redis:alpine
+    command: redis-server --requirepass redispassword
+    volumes:
+      - redis_data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+     - REDIS_REPLICATION_MODE=master
+
+  db_url_shortener:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+    container_name: url_shortener_db
+
+  url_shortener:
+    depends_on:
+      - redis_url_shortener
+      - db_url_shortener
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 80
+    restart: always
+    environment:
+      VIRTUAL_HOST: urlshortener.develop,www.urlshortener.develop
+    container_name: url_shortener
+volumes:
+  db_data:
+  redis_data:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy

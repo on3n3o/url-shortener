@@ -91,6 +91,7 @@
             </footer>
         </div>
     </section>
+    @stack('scripts')
 </body>
 
 </html>

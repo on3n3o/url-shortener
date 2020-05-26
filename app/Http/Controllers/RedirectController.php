@@ -10,8 +10,12 @@ class RedirectController extends Controller
 {
     public function redirect(Request $request, $short)
     {
-        $short_link = ShortLink::where('short', $short)->firstOrFail();
+        $start = microtime(true);
+        $short_link = \Cache::remember('short_link_' . $short, config('redirect.ttl'), function () use ($short) {
+            return ShortLink::where('short', $short)->firstOrFail();
+        });
         event(new Redirected($short_link, $request));
-        return redirect($short_link->url);
+        $time_elapsed = microtime(true) - $start;
+        return view('redirect', compact('short_link', 'time_elapsed'));
     }
 }

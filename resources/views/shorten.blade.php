@@ -17,10 +17,28 @@
             </h2>
             <br>
             <p>{{ config('app.url') }}/{{ $shortLink->short }}</p>
-            <button class="button is-light is-success save-to-clipboard" data-url="{{ config('app.url') }}/{{ $shortLink->short }}">Save to clipboard&nbsp;&nbsp;&nbsp;<i class="fa fa-clipboard"></i></button>
+            <button class="button is-light is-success save-to-clipboard" data-url="{{ config('app.url') }}/{{ $shortLink->short }}" click="copyToClipboard('{{ config('app.url') }}/{{ $shortLink->short }}')">
+                Save to clipboard&nbsp;&nbsp;&nbsp;<i class="fa fa-clipboard"></i>
+            </button>
             <br>
             <p>Do you want to make another one?</p><a class="button is-link" href="/">YES!</a>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    const copyToClipboard = str => {
+        const el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    };
+</script>
+@endpush
