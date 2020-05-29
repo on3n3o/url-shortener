@@ -15,18 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'WelcomeController@index');
 
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/features', 'WelcomeController@features')->name('features');
 
 Route::post('/shorten', 'ShortenController@store')->name('shorten');
 
 Route::get('/shorten', 'ShortenController@redirect')->name('shorten.redirect');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['verified', 'auth']], function(){
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    //Route::resource('/link', 'LinkController');
+    Route::get('/stats/{uuid}', 'StatsController')->name('stats');
+});
 
-Route::resource('/link', 'LinkController');
-
-Route::get('/stats/{uuid}', 'StatsController')->name('stats');
 
 Route::get('/{short}', 'RedirectController@redirect');

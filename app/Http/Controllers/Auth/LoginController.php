@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -18,6 +21,10 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
+    protected $providers = [
+        'github', 'gitlab', 'facebook'
+    ];
 
     use AuthenticatesUsers;
 
@@ -36,5 +43,55 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider($provider)
+    {
+        if(in_array($provider, $this->providers)){
+            return Socialite::driver($provider)->redirect();
+        }
+        return redirect()->route('login');
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback($provider)
+    {
+        if(!in_array($provider, $this->providers)){
+            return redirect()->route('login');
+        }
+        
+        $socialiteUser = Socialite::driver($provider)->stateless()->user();
+        
+        $user = User::where('email', $socialiteUser->getEmail())->where('provider', $provider)->first();
+
+        if($user) {
+            \Auth::login($user);
+            return redirect()->route('dashboard');
+        } else {
+            $user = User::create([
+                'name' => $socialiteUser->getName(),
+                'email' => $socialiteUser->getEmail(),
+                'image' => $socialiteUser->getAvatar(),
+                'provider_id' => $socialiteUser->getId(),
+                'password' => bcrypt(\Str::random(32)),
+                'provider' => $provider
+            ]);
+
+            $user->email_verified_at = Carbon::now();
+            $user->save();
+
+            \Auth::login($user);
+            
+            return redirect()->route('dashboard');
+        }
     }
 }

@@ -47,12 +47,12 @@
                                 <ul>
                                     <li @if(!isset($selected)) class="is-active" @endif><a href="/">{{ __('Home') }}</a></li>
                                     @auth
-                                    <li @if(isset($selected) && $selected=='dashboard' ) class="is-active" @endif ><a href="{{ route('home') }}">{{ __('Dashboard') }}</a></li>
+                                    <li @if(isset($selected) && $selected=='dashboard' ) class="is-active" @endif><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
                                     @endauth
-                                    <li @if(isset($selected) && $selected=='features' ) class="is-active" @endif ><a href="{{ route('features') }}">{{ __('Features') }}</a></li>
+                                    <li @if(isset($selected) && $selected=='features' ) class="is-active" @endif><a href="{{ route('features') }}">{{ __('Features') }}</a></li>
                                     @guest
-                                    <li @if(isset($selected) && $selected=='login' ) class="is-active" @endif ><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                                    <li @if(isset($selected) && $selected=='register' ) class="is-active" @endif ><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                    <li @if(isset($selected) && $selected=='login' ) class="is-active" @endif><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                                    <li @if(isset($selected) && $selected=='register' ) class="is-active" @endif><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                                     @else
                                     <li>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -86,6 +86,9 @@
                         <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
                         is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.<br>
                         Code created with <i class="fa fa-heart has-text-danger"></i> in <a href="https://github.com/on3n3o/url-shortener">https://github.com/on3n3o/url-shortener</a>
+                        @if(isset($time_elapsed))
+                            <p class="has-text-grey-lighter">Time elapsed on DB({{$time_elapsed ?? ''}} s) on node XXXXXXXXXX</p>
+                        @endif
                     </p>
                 </div>
             </footer>

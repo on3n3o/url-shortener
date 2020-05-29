@@ -10,7 +10,7 @@
         </div>
         <div class="column is-6 is-offset-1">
             <h1 class="title is-2">
-                You are being redirected <br>in <span class="time-remaining">5</span> seconds
+                You are being redirected <br>in <span id="time-remaining">5</span> seconds
             </h1>
             <h2 class="subtitle is-4">
                 from {{ config('app.url') }}/{{ $short_link->short }}
@@ -25,14 +25,22 @@
             <a href="/" class="button is-danger is-light">YES! Take me back!</a>
         </div>
     </div>
-    <p class="has-text-grey-lighter">Time elapsed on DB({{$time_elapsed}} s) on node {{ \Str::random(10)}}</p>
 </div>
 @endsection
 
 @push('scripts')
 <script>
-    setTimeout(function(){
-            window.location.href = '{{ $short_link->url }}';
-    }, 5000);
+    var counter = 5;
+var interval = setInterval(function() {
+    span = document.getElementById("time-remaining");
+    span.innerHTML = counter;    
+    counter--;
+    // Display 'counter' wherever you want to display it.
+    if (counter == 0) {
+        // Display a login box
+        clearInterval(interval);
+        window.location.href = '{{ $short_link->url }}';
+    }
+}, 1000);
 </script>
 @endpush
