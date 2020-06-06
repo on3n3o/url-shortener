@@ -1,14 +1,25 @@
 version: "3"
 
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+
   redis_url_shortener:
     image: redis:alpine
     command: redis-server --requirepass redispassword
     volumes:
       - redis_data:/var/lib/redis
-      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+      - $PWD/redis/:/usr/local/etc/redis/
+    restart: always
     environment:
      - REDIS_REPLICATION_MODE=master
+    container_name: url_shortener_redis
 
   db_url_shortener:
     image: mysql:5.7
@@ -29,9 +40,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    expose:
-      - 80
+    volumes: 
+      - ./:/var/www
     restart: always
+    ports: 
+      - "9000:80"
     environment:
       VIRTUAL_HOST: urlshortener.develop,www.urlshortener.develop
     container_name: url_shortener

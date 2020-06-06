@@ -72,7 +72,7 @@
             </nav>
         </div>
 
-        <div class="hero-body">
+        <div class="hero-body" >
             <div class="container">
                 @yield('content')
             </div>
