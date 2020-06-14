@@ -1,48 +1,48 @@
-FROM php:7.2-fpm
+FROM ubuntu:18.04
+ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /var/www
 
-COPY composer.lock composer.json /var/www/
+COPY composer.lock composer.json package.json package-lock.json /var/www/
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
+RUN apt update && apt upgrade -y && apt install -y \
+    apache2 \
+    php \
+    php-xml \
+    php-gd \
+    php-opcache \
+    php-mbstring \
+    php-zip \
+    php-mysql \
+    libapache2-mod-php7.2 \
     zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
     unzip \
     git \
     curl
+RUN a2enmod rewrite
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
-RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
-RUN docker-php-ext-install gd
-
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-
-# Copy existing application directory contents
-COPY . /var/www
-
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+COPY --chown=www-data:www-data . /var/www
+
+# Copy config for apache2 laravel public folder
+COPY 000-default.conf /etc/apache2/sites-available
+
+# Install composer packages and run laravel setup
+RUN cp .env.example .env
+RUN composer install
+RUN php artisan key:generate
 
 # Change current user to www
-USER www
+# USER www
 
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
+# Expose port 80 and start server
+EXPOSE 80
 
-CMD ["php-fpm"]
+CMD ["apachectl", "-D", "FOREGROUND"]
