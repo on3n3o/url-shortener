@@ -16,8 +16,8 @@
                 nice :)
             </h2>
             <br>
-            <p>{{ config('app.url') }}/{{ $shortLink->short }}</p>
-            <button class="button is-light is-success save-to-clipboard" data-url="{{ config('app.url') }}/{{ $shortLink->short }}" click="copyToClipboard('{{ config('app.url') }}/{{ $shortLink->short }}')">
+            <p><input type="text" value="{{ config('app.url') }}/{{ $shortLink->short }}" id="shortLink" readonly></p>
+            <button class="button is-light is-success" onclick="myFunction()">
                 Save to clipboard&nbsp;&nbsp;&nbsp;<i class="fa fa-clipboard"></i>
             </button>
             <br>
@@ -29,16 +29,15 @@
 
 @push('scripts')
 <script>
-    const copyToClipboard = str => {
-        const el = document.createElement('textarea');
-        el.value = str;
-        el.setAttribute('readonly', '');
-        el.style.position = 'absolute';
-        el.style.left = '-9999px';
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-    };
+function myFunction() {
+  /* Get the text field */
+  var copyText = document.getElementById("shortLink");
+    console.log(copyText);
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+} 
 </script>
 @endpush

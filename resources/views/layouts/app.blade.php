@@ -72,10 +72,8 @@
             </nav>
         </div>
 
-        <div class="hero-body" >
-            <div class="container">
+        <div class="hero-body">
                 @yield('content')
-            </div>
         </div>
 
         <div class="hero-foot">

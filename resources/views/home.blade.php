@@ -1,7 +1,7 @@
 @extends('layouts.app', ['selected' => 'dashboard'])
 
 @section('content')
-<div class="container">
+<div class="container" style="align-self:normal">
     <div class="columns">
         <div class="column">
             <p>List of my shortened links</p>
