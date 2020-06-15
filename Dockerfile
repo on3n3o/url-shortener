@@ -22,6 +22,14 @@ RUN apt update && apt upgrade -y && apt install -y \
     curl
 RUN a2enmod rewrite
 
+ENV NVM_DIR /usr/local/nvm
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+ENV NODE_VERSION v12.10.0
+RUN /bin/bash -c "source $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm use --delete-prefix $NODE_VERSION"
+
+ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -38,6 +46,7 @@ COPY 000-default.conf /etc/apache2/sites-available
 RUN cp .env.example .env
 RUN composer install
 RUN php artisan key:generate
+RUN npm run prod
 
 # Change current user to www
 # USER www
