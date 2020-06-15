@@ -46,6 +46,7 @@ COPY 000-default.conf /etc/apache2/sites-available
 RUN cp .env.example .env
 RUN composer install
 RUN php artisan key:generate
+RUN npm install
 RUN npm run prod
 
 # Change current user to www
