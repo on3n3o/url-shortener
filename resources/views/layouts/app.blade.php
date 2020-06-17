@@ -84,7 +84,7 @@
                         is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.<br>
                         Code created with <i class="fa fa-heart has-text-danger"></i> in <a href="https://github.com/on3n3o/url-shortener">https://github.com/on3n3o/url-shortener</a>
                         @if(isset($time_elapsed))
-                        <p class="has-text-grey-lighter">Time elapsed on DB({{ $time_elapsed ?? '' }} s) on node {{ ($dockerId = getenv('DOCKER_CID')) != '' ? $dockerId : 'not_dockerized' }}</p>
+                        <p class="has-text-grey-lighter">Time elapsed on DB({{ $time_elapsed ?? '' }} s) on node {{ ($dockerId = exec('cat /proc/1/cpuset | cut -c9-')) != '' ? $dockerId : 'not_dockerized' }}</p>
                         @endif
                     </p>
                 </div>
