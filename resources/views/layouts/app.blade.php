@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div id="cookie-law" class="notification is-warning is-light" style="z-index: 999; position: fixed; top: 10px; left: 30%;">
+    <div id="cookie-law" class="notification is-warning is-light" style="z-index: 999; position: fixed; top: 10px; left: 30%; display:none;">
         <button class="delete"></button>
         Our site uses cookies. Learn more at: <a href="{{route('privacy-policy')}}">{{route('privacy-policy')}}</a>
     </div>
@@ -115,9 +115,9 @@
             return null;
         }
 
-        if(getCookie('seen-cookie-law')){
+        if(!getCookie('seen-cookie-law')){
             var cookieBox = document.getElementById('cookie-law');
-            cookieBox.style.display = 'none';
+            cookieBox.style.display = 'block';
         }
 
         document.addEventListener('DOMContentLoaded', () => {

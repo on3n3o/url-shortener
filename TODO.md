@@ -16,7 +16,8 @@
 - [x] redirect detecting user-agent like facebook or google should redirect with 302, without stalling for ads
 - [x] dashboard and statistics should start at the top
 - [x] save to clipboard doesn't work
-- [ ] Add README.md and installation info( and nginx-proxy info on install and certs)
+- [x] Add README.md and installation info( and nginx-proxy info on install)
+- [x] change redis logo in Features (served by http)
 
 # v1.1
 - [ ] suspicious redirects should be soft banned "YES! Take me back!"

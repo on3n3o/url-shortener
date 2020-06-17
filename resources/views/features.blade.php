@@ -40,7 +40,7 @@
     <div class="columns is-vcentered">
         <div class="column is-5">
             <figure class="image is-21by9">
-                <img src="http://download.redis.io/logocontest/82.png" alt="Redis Key Value Store">
+                <img src="/img/redis_logo.png" alt="Redis Key Value Store">
             </figure>
         </div>
         <div class="column is-6 is-offset-1">
