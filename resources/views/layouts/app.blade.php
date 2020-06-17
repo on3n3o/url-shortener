@@ -22,13 +22,12 @@
 </head>
 
 <body>
+    <div id="cookie-law" class="notification is-warning is-light" style="z-index: 999; position: fixed; top: 10px; left: 30%;">
+        <button class="delete"></button>
+        Our site uses cookies. Learn more at: <a href="{{route('privacy-policy')}}">{{route('privacy-policy')}}</a>
+    </div>
     <section class="hero is-fullheight is-default is-bold">
         <div class="hero-head">
-            <!-- <nav class="navbar">
-                <div class="container is-vcentered has-text-info">
-                    <small>Our site uses cookies. Check <a>here</a> how it works.</small>
-                </div>
-            </nav> -->
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
@@ -73,7 +72,7 @@
         </div>
 
         <div class="hero-body">
-                @yield('content')
+            @yield('content')
         </div>
 
         <div class="hero-foot">
@@ -85,7 +84,7 @@
                         is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.<br>
                         Code created with <i class="fa fa-heart has-text-danger"></i> in <a href="https://github.com/on3n3o/url-shortener">https://github.com/on3n3o/url-shortener</a>
                         @if(isset($time_elapsed))
-                            <p class="has-text-grey-lighter">Time elapsed on DB({{$time_elapsed ?? ''}} s) on node XXXXXXXXXX</p>
+                        <p class="has-text-grey-lighter">Time elapsed on DB({{$time_elapsed ?? ''}} s) on node XXXXXXXXXX</p>
                         @endif
                     </p>
                 </div>
@@ -93,6 +92,44 @@
         </div>
     </section>
     @stack('scripts')
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return null;
+        }
+
+        if(getCookie('seen-cookie-law')){
+            var cookieBox = document.getElementById('cookie-law');
+            cookieBox.style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+                $delete.addEventListener('click', () => {
+                    setCookie('seen-cookie-law', true, 365);
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
