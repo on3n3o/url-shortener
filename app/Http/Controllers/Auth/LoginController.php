@@ -75,6 +75,7 @@ class LoginController extends Controller
 
         if($user) {
             \Auth::login($user);
+            $user->update(['last_logged_in' => Carbon::now()]);
             return redirect()->route('dashboard');
         } else {
             $user = User::create([
@@ -83,7 +84,8 @@ class LoginController extends Controller
                 'image' => $socialiteUser->getAvatar(),
                 'provider_id' => $socialiteUser->getId(),
                 'password' => bcrypt(\Str::random(32)),
-                'provider' => $provider
+                'provider' => $provider,
+                'last_logged_in' => Carbon::now(),
             ]);
 
             $user->email_verified_at = Carbon::now();
@@ -103,7 +105,18 @@ class LoginController extends Controller
      */
     protected function credentials(\Illuminate\Http\Request $request)
     {
-        //return $request->only($this->username(), 'password');
         return ['email' => $request->{$this->username()}, 'password' => $request->password, 'provider' => null];
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        $user->update(['last_logged_in' => Carbon::now()]);
     }
 }

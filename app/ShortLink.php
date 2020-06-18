@@ -31,8 +31,13 @@ class ShortLink extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function statistics()
+    public function userAgents()
     {
-        return $this->hasMany(Statistic::class);
+        return $this->hasMany(UserAgent::class);
+    }
+
+    public function countries()
+    {
+        return $this->belongsToMany(Country::class, 'short_link_countries', 'short_link_id', 'country_id')->withPivot('visits')->withTimestamps();
     }
 }

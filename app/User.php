@@ -16,8 +16,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'image', 
-        'provider', 'provider_id', 'is_admin'
+        'name', 
+        'email', 
+        'password', 
+        'image', 
+        'provider', 
+        'provider_id', 
+        'is_admin',
+        'last_logged_in',
     ];
 
     /**
@@ -26,7 +32,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 
+        'remember_token', 
+        'is_admin',
     ];
 
     /**
@@ -36,6 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_logged_in' => 'datetime'
     ];
 
     public function links()

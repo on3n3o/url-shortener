@@ -13,12 +13,12 @@ return [
     |
     */
 
-    'previous' => 'Previous',
-    'next' => 'Next',
-
-    'first_page_message' => 'This is the first page',
-    'last_page_message' => 'This is the last page',
+    'previous' => 'Poprzednia strona',
+    'next' => 'Następna strona',
     
-    'page' => 'Page',
-    'goto_page' => 'Goto Page'
+    'first_page_message' => 'To jest pierwsza strona',
+    'last_page_message' => 'To jest ostatnia strona',
+
+    'page' => 'Strona',
+    'goto_page' => 'Idź do strony'
 ];

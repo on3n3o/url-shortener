@@ -4,20 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Statistic extends Model
+class ShortLinkCountry extends Model
 {
-    protected $table = 'statistics';
+    protected $table = 'short_link_countries';
 
     protected $fillable = [
         'short_link_id',
-        'user_agent',
-        'count'
+        'country_id',
+        'visits',
     ];
 
     protected $casts = [
         'short_link_id' => 'integer',
-        'count' => 'integer',
+        'country_id' => 'integer',
+        'visits' => 'integer',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
     public function shortLink()
     {

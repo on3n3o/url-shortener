@@ -10,26 +10,28 @@
         </div>
         <div class="column is-6 is-offset-1">
             <h1 class="title is-2">
-                Link Statistics
+                {{__('Link Statistics')}}
             </h1>
             <h2 class="subtitle is-4">
-                Links created with account have stats
+                {{__('Links created with account have stats')}}
             </h2>
             <br>
-            <p>Our clear Stats Panel gives you insight into who and how clicked your link down to browser, device they where using.</p>
+            <p>
+                {{__('Our clear Stats Panel gives you insight into who and how clicked your link down to browser, device they where using')}}.
+            </p>
         </div>
     </div>
 
     <div class="columns is-vcentered">
         <div class="column is-6 is-offset-1">
             <h1 class="title is-2">
-                Event Based request info
+                {{__('Event Based request info')}}
             </h1>
             <h2 class="subtitle is-4">
-                Our code saves information about request via Event Based code
+                {{__('Our code saves information about request via Event Based code')}}
             </h2>
             <br>
-            <p>This means that your shortened links are faster than ever and aren't waiting for DB to save information before responding with redirect.</p>
+            <p>{{__('This means that your shortened links are faster than ever and aren\'t waiting for DB to save information before responding with redirect')}}.</p>
         </div>
         <div class="column is-5">
             <figure class="image is-21by9">
@@ -45,27 +47,29 @@
         </div>
         <div class="column is-6 is-offset-1">
             <h1 class="title is-2">
-                Ultra Fast
+                {{__('Ultra Fast')}}
             </h1>
             <h2 class="subtitle is-4">
-                Powered by Redis in-memory Key Value Store
+                {{__('Powered by Redis in-memory Key Value Store')}}
             </h2>
             <br>
-            <p>This helps us improve read-response from your shortened link to full url redirect.</p>
+            <p>
+                {{__('This helps us improve read-response from your shortened link to full url redirect')}}
+            </p>
         </div>
     </div>
 
     <div class="columns is-vcentered">
         <div class="column is-6 is-offset-1">
             <h1 class="title is-2">
-                Open Source
+                {{__('Open Source')}}
             </h1>
             <h2 class="subtitle is-4">
-                You can examine, copy and modify code.
+                {{__('You can examine, copy and modify code')}}
             </h2>
             <br>
-            <p>You can contribute to our project by making pull request to our github code.</p>
-            <p> Available at <a href="https://github.com/on3n3o/url-shortener">https://github.com/on3n3o/url-shortener</a>
+            <p>{{__('You can contribute to our project by making pull request to our github code')}}</p>
+            <p> {{__('Available at')}} <a href="https://github.com/on3n3o/url-shortener">https://github.com/on3n3o/url-shortener</a>
         </div>
         <div class="column is-5">
             <figure class="image is-21by9">
