@@ -15,12 +15,14 @@ RUN apt update && apt upgrade -y && apt install -y \
     php-mbstring \
     php-zip \
     php-mysql \
+    php-curl \
     libapache2-mod-php7.2 \
     zip \
     unzip \
     git \
     nano \
     curl
+    
 RUN a2enmod rewrite
 
 ENV NVM_DIR /usr/local/nvm
