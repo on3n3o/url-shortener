@@ -21,8 +21,9 @@ RUN apt update && apt upgrade -y && apt install -y \
     unzip \
     git \
     nano \
+    crontab \
     curl
-    
+
 RUN a2enmod rewrite
 
 ENV NVM_DIR /usr/local/nvm
@@ -54,6 +55,9 @@ RUN npm run prod
 
 # Change current user to www
 # USER www
+
+# Add crontab entry
+RUN (crontab -l 2>/dev/null; echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1") | crontab -
 
 # Expose port 80 and start server
 EXPOSE 80
