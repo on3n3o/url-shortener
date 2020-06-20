@@ -21,7 +21,7 @@ RUN apt update && apt upgrade -y && apt install -y \
     unzip \
     git \
     nano \
-    crontab \
+    cron \
     curl
 
 RUN a2enmod rewrite

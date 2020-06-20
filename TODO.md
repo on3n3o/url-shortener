@@ -30,7 +30,7 @@ x-real-ip' =>
 - [x] save to clipboard doesn't work
 - [x] Add README.md and installation info( and nginx-proxy info on install)
 - [x] change redis logo in Features (served by http)
-- [ ] remove inactive accounts after 3 years
+- [x] remove inactive accounts after 3 years
 - [x] pl lang resources
 
 # v1.1
