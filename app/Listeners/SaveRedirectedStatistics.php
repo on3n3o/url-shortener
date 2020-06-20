@@ -29,6 +29,12 @@ class SaveRedirectedStatistics
      */
     public function handle(Redirected $event)
     {
+        /**
+         * @todo IP forwarded should be detected here and analized
+         */
+        
+        $ip = $event->request->header('x-real-ip', null) ?? $event->request->header('x-forwarded-for', null) ?? $event->request->ip();
+
         $userAgent = UserAgent::firstOrNew([
             'short_link_id' => $event->short_link->id,
             'user_agent' => $event->request->header('user-agent', null),
@@ -40,7 +46,9 @@ class SaveRedirectedStatistics
 
         // Save country redirect visit count
 
-        $country = Country::where('iso_code', geoip($event->request->ip())->iso_code)->first();
+
+        $country = Country::where('iso_code', geoip($ip)->iso_code)->first();
+
         $shortLinkCountry = ShortLinkCountry::firstOrNew([
             'country_id' => $country->id,
             'short_link_id' => $event->short_link->id

@@ -19,6 +19,7 @@ RUN apt update && apt upgrade -y && apt install -y \
     zip \
     unzip \
     git \
+    nano \
     curl
 RUN a2enmod rewrite
 

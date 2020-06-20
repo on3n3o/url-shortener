@@ -6,6 +6,18 @@
 - [ ] docker-compose for production
 - [x] registering accounts that are using the same email address as accounts signed in via socialite
 - [ ] statistics should have collect ip addresses(hidden 2 last 127.0.X.X)+user-agents from redirects
+
+```
+x-real-ip' => 
+  array (
+    0 => '94.254.173.33',
+  ),
+  'x-forwarded-for' => 
+  array (
+    0 => '94.254.173.33',
+  ),
+```
+
 - [x] statistics should have countries count
 - [ ] statistics for hour/day/month for clicks example: how many people clicked link at 11:00pm
 - [x] logo needs to be fixed
