@@ -5,16 +5,16 @@
 - [x] docker-compose for development
 - [ ] docker-compose for production
 - [x] registering accounts that are using the same email address as accounts signed in via socialite
-- [ ] statistics should have collect ip addresses(hidden 2 last 127.0.X.X)+user-agents from redirects
+- [x] statistics should have collect ip addresses(hidden 2 last 127.0.X.X)from redirects
 
 ```
 x-real-ip' => 
   array (
-    0 => '94.254.173.33',
+    0 => '94.254.X.X',
   ),
   'x-forwarded-for' => 
   array (
-    0 => '94.254.173.33',
+    0 => '94.254.X.X',
   ),
 ```
 
@@ -32,11 +32,13 @@ x-real-ip' =>
 - [x] change redis logo in Features (served by http)
 - [x] remove inactive accounts after 3 years
 - [x] pl lang resources
+- [x] add APP_SCHEMA to env and config and change AppServiceProvider force scheme to use config
 
 # v1.1
 - [ ] Admin dashboard
 - [ ] Detect clicks over proxy and ip over proxy
 - [ ] statistics should have pie chart with localization information about from what part of the world was redirect made
+- [ ] statistics should have collect ip addresses(hidden 2 last 127.0.X.X)+user-agents from redirects
 - [ ] Use AmChart to show countries clicks
 - [ ] suspicious redirects should be soft banned "YES! Take me back!"
 - [ ] suspicious accounts should be soft banned

@@ -11,6 +11,7 @@ class StatsController extends Controller
         $short_link = ShortLink::where('uuid', $uuid)->firstOrFail();
         $userAgents = $short_link->userAgents()->paginate();
         $countries = $short_link->countries;
-        return view('stats', compact('short_link', 'userAgents', 'countries'));
+        $ips = $short_link->ips;
+        return view('stats', compact('short_link', 'userAgents', 'countries', 'ips'));
     }
 }

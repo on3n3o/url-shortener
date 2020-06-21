@@ -17,7 +17,7 @@
                                     <span class="icon">
                                         <i class="fab fa-facebook"></i>
                                     </span>
-                                    <span>Sign in with Facebook</span>
+                                    <span>{{__('Sign in with')}} Facebook</span>
                                 </a>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                     <span class="icon">
                                         <i class="fab fa-github"></i>
                                     </span>
-                                    <span>Sign in with GitHub</span>
+                                    <span>{{__('Sign in with')}} GitHub</span>
                                 </a>
                             </div>
                         </div>
@@ -37,14 +37,14 @@
                                     <span class="icon">
                                         <i class="fab fa-gitlab"></i>
                                     </span>
-                                    <span>Sign in with GitLab</span>
+                                    <span>{{__('Sign in with')}} GitLab</span>
                                 </a>
                             </div>
                         </div>
 
                         <div class="columns is-centered">
                             <div class="column column-is-12">
-                                <h2>or Register</h2>
+                                <h2>{{__('or Register')}}</h2>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                             <div class="field">
                                 <label class="label">{{ __('Name') }}</label>
                                 <div class="control has-icons-left">
-                                    <input class="input @error('name') is-danger @enderror" type="text" placeholder="John Smith" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input class="input @error('name') is-danger @enderror" type="text" placeholder="{{__('John Smith')}}" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user"></i>
                                     </span>
@@ -66,7 +66,7 @@
                             <div class="field">
                                 <label class="label">{{ __('E-Mail Address') }}</label>
                                 <div class="control has-icons-left">
-                                    <input class="input @error('email') is-danger @enderror" type="email" placeholder="someone@example.org" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input class="input @error('email') is-danger @enderror" type="email" placeholder="{{__('someone@example.org')}}" name="email" value="{{ old('email') }}" required autocomplete="email">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-envelope"></i>
                                     </span>
@@ -102,10 +102,10 @@
 
                             <div class="field is-grouped is-grouped-right">
                                 <div class="control">
-                                    <a href="{{ route('login') }}" class="button is-link is-light">Login</a>
+                                    <a href="{{ route('login') }}" class="button is-link is-light">{{__('Login')}}</a>
                                 </div>
                                 <div class="control">
-                                    <button class="button is-success" type="submit">Register</button>
+                                    <button class="button is-success" type="submit">{{__('Register')}}</button>
                                 </div>
                             </div>
                         </form>

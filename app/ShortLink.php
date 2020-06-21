@@ -40,4 +40,9 @@ class ShortLink extends Model
     {
         return $this->belongsToMany(Country::class, 'short_link_countries', 'short_link_id', 'country_id')->withPivot('visits')->withTimestamps();
     }
+
+    public function ips()
+    {
+        return $this->belongsToMany(Ip::class, 'short_link_ips', 'short_link_id', 'ip_id')->withPivot('visits')->withTimestamps();
+    }
 }

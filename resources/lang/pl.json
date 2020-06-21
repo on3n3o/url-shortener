@@ -27,6 +27,7 @@
     "redirecting to": "przekierowujące do",
     "Count": "Ilość",
     "Countries": "Kraje",
+    "IPs": "IPki",
     "Country": "Kraj",
     "Visits": "Wizyt",
 
@@ -42,5 +43,24 @@
     "Open Source": "Open Source",
     "You can examine, copy and modify code": "Możesz dowolnie badać, kopiować i modyfikować kod",
     "You can contribute to our project by making pull request to our github code": "Zachęcamy do rozwijania naszego projektu przez Pull Requesty do naszego repozytorium",
-    "Available at": "Dostępnego pod"
+    "Available at": "Dostępnego pod",
+
+    "Sign in": "Zaloguj się",
+    "Sign in with": "Zaloguj się z",
+    "or Login": "albo zaloguj się",
+    "or Register": "albo zarejestruj się",
+    "E-Mail Address": "adres email",
+    "Password": "hasło",
+    "someone@example.org": "ktoś@example.org",
+    "Remember me": "zapamiętaj mnie",
+    "Name": "nazwa",
+    "Confirm Password": "potwierdź hasło",
+    "John Smith": "Jan Kowalski",
+
+    "You have done it!": "Zrobiłeś to!",
+    "nice": "super",
+    "Save to clipboard": "Zapisz do schowka",
+    "Do you want to make another one": "Chcesz skrócić kolejny",
+    "YES": "Ależ oczywiście",
+    "Go to dashboard": "Idź do panelu"
 }

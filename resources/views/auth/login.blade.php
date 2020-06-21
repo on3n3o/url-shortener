@@ -17,7 +17,7 @@
                                     <span class="icon">
                                         <i class="fab fa-facebook"></i>
                                     </span>
-                                    <span>Sign in with Facebook</span>
+                                    <span>{{ __('Sign in with') }} Facebook</span>
                                 </a>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                     <span class="icon">
                                         <i class="fab fa-github"></i>
                                     </span>
-                                    <span>Sign in with GitHub</span>
+                                    <span>{{ __('Sign in with') }} GitHub</span>
                                 </a>
                             </div>
                         </div>
@@ -37,14 +37,14 @@
                                     <span class="icon">
                                         <i class="fab fa-gitlab"></i>
                                     </span>
-                                    <span>Sign in with GitLab</span>
+                                    <span>{{ __('Sign in with') }} GitLab</span>
                                 </a>
                             </div>
                         </div>
 
                         <div class="columns is-centered">
                             <div class="column column-is-12">
-                                <h2>or Login</h2>
+                                <h2>{{__('or Login')}}</h2>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                             <div class="field">
                                 <label class="label">{{ __('E-Mail Address') }}</label>
                                 <div class="control has-icons-left">
-                                    <input class="input @error('email') is-danger @enderror" type="email" placeholder="someone@example.org" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input class="input @error('email') is-danger @enderror" type="email" placeholder="{{__('someone@example.org')}}" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-envelope"></i>
                                     </span>
@@ -80,15 +80,15 @@
 
                             <label class="checkbox">
                                 <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                Remember me
+                                {{__('Remember me')}}
                             </label>
 
                             <div class="field is-grouped is-grouped-right">
                                 <div class="control">
-                                    <a href="{{ route('register') }}" class="button is-link is-light">Register</a>
+                                    <a href="{{ route('register') }}" class="button is-link is-light">{{__('Register')}}</a>
                                 </div>
                                 <div class="control">
-                                    <button class="button is-success" type="submit">Login</button>
+                                    <button class="button is-success" type="submit">{{__('Login')}}</button>
                                 </div>
                             </div>
                         </form>

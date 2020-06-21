@@ -47,7 +47,29 @@
                     </tbody>
                 </table>
             </div>
-            {{ $userAgents->links() }}
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
+            {{__('IPs')}}
+            <div class="table-container">
+                <table class="table is-hoverable is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>{{__('IP')}}</th>
+                            <th width="10%">{{__('Visits')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($ips as $ip)
+                        <tr>
+                            <td>{{ $ip->ip }}</td>
+                            <td>{{ $ip->pivot['visits'] }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
