@@ -21,7 +21,7 @@ class ShortLink extends Model
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->short = Str::random(10);
+            $model->short = Str::random(5);
             $model->uuid = Str::uuid();
         });
     }
