@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -103,7 +104,7 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    protected function credentials(\Illuminate\Http\Request $request)
+    protected function credentials(Request $request)
     {
         return ['email' => $request->{$this->username()}, 'password' => $request->password, 'provider' => null];
     }
