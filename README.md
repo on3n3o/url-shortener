@@ -17,16 +17,13 @@ url-shortener is an application based on Laravel 7.x and Bulma. Main features ar
 
 - Docker
 - docker-compose
-- nginx-proxy
 
 ## Quick local setup
 
-1. Run nginx-proxy.
-2. Build image, type in console `docker-compose build`
-3. Run full stack, type `docker-compose up -d`
-4. Migrate your database `docker exec -it url_shortener bash` and input `php artisan migrate && exit`
-5. Add to your /etc/hosts file `127.0.0.1       urlshortener.develop`
-6. Visit your local website via browser [urlshortener.develop](http://urlshortener.develop/)
+1. Stop locally serving on ports 80, 3306, 6379, 1025, 8025
+2. Run command `./vendor/bin/sail up`
+3. Run command `./vendor/bin/sail artisan migrate`
+6. Visit your local website via browser [localhost](http://localhost/)
 
 ## Official url-shortener sites
 
