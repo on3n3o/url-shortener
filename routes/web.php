@@ -35,8 +35,7 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['verified', 'auth']], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-    Route::resource('/link', LinkController::class);
-    Route::get('/stats/{uuid}', [StatsController::class])->name('stats');
+    Route::get('/stats/{uuid}', StatsController::class)->name('stats');
 });
 
 
