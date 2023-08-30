@@ -57,6 +57,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'domains' => explode(',', env('APP_DOMAINS', 'example.org,example.org.dev,example.org.test')),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

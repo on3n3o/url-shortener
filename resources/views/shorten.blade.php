@@ -8,7 +8,7 @@
                 <img src="https://picsum.photos/800/600/?random" alt="Pictures provided by unsplash.com">
             </figure>
         </div>
-        <div class="column is-6 is-offset-1">
+        <div class="column is-7">
             <h1 class="title is-2">
                 {{ __('You have done it!') }}
             </h1>
@@ -16,7 +16,7 @@
                 {{__('nice')}} :)
             </h2>
             <br>
-            <p><input type="text" value="{{ config('app.url') }}/{{ $shortLink->short }}" id="shortLink" readonly></p>
+            <p><input type="text" value="{{ $shortLink->short_url }}" id="shortLink" readonly></p>
             <button class="button is-light is-success" onclick="myFunction()">
                 {{__('Save to clipboard')}}&nbsp;&nbsp;&nbsp;<i class="fa fa-clipboard"></i>
             </button>

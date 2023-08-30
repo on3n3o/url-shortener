@@ -8,8 +8,9 @@ use Illuminate\Support\Str;
 class ShortLink extends Model
 {
     protected $fillable = [
-        'short', 
+        'short',
         'url',
+        'domain',
         'user_id'
     ];
 
@@ -44,5 +45,10 @@ class ShortLink extends Model
     public function ips()
     {
         return $this->belongsToMany(Ip::class, 'short_link_ips', 'short_link_id', 'ip_id')->withPivot('visits')->withTimestamps();
+    }
+
+    public function getShortUrlAttribute()
+    {
+        return 'https://' . $this->domain . '/' . $this->short;
     }
 }
