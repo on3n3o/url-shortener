@@ -18,7 +18,7 @@
                         <tbody>
                             @foreach($shortLinks as $shortLink)
                             <tr>
-                                <td><a href="{{ config('app.url') }}/{{ $shortLink->short }}">{{ config('app.url')}}/{{ $shortLink->short }}</a></td>
+                                <td><a href="{{ config('app.url') }}/{{ $shortLink->short }}">{{ $shortLink->domain }}/{{ $shortLink->short }}</a></td>
                                 <td class="is-hidden-mobile"><a href="{{ $shortLink->url }}">{{ $shortLink->url }}</a></td>
                                 <td>
                                     <p class="has-text-centered">

@@ -4,7 +4,7 @@
 <div class="container" style="align-self:normal">
     <div class="columns">
         <div class="column">
-            {{__('Statistics for')}} <a href="{{ config('app.url')}}/{{ $short_link->short }}">{{ config('app.url')}}/{{ $short_link->short }}</a> {{__('redirecting to')}} <a href="{{ $short_link->url }}">{{ $short_link->url }}</a>
+            {{__('Statistics for')}} <a href="{{ $short_link->short_url }}">{{ $short_link->short_url }}</a> {{__('redirecting to')}} <a href="{{ $short_link->url }}">{{ $short_link->url }}</a>
             <div class="table-container">
                 <table class="table is-hoverable is-fullwidth">
                     <thead>

@@ -2,8 +2,8 @@
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
-                <img src="/img/logo.png" alt="{{ config('app.name', 'github.com/on3n3o/url-shortener') }}" alt="Logo">
-                <h3 class="title is-3">{{ \Str::upper(config('app.name', 'github.com/on3n3o/url-shortener')) }}</h3>
+                <img src="/img/logo.png" alt="{{ in_array(request()->getHost(), config('app.domains')) ? request()->getHost() : 'NULL' }}" alt="Logo">
+                <h3 class="title is-3">{{ in_array(request()->getHost(), config('app.domains')) ? request()->getHost() : 'NULL' }}</h3>
             </a>
             <span class="navbar-burger burger" data-target="navbarMenu">
                 <span></span>
